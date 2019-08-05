@@ -86,6 +86,10 @@ See the [installation guide](https://kubernetes.io/docs/tasks/tools/install-mini
   * VT-x/AMD-v virtualization must be enabled in BIOS
   * manually:  `curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && sudo install minikube-linux-amd64 /usr/local/bin/minikube`
 
+
+  * Rebuild from git
+    BUILD_IN_DOCKER=y make all
+
 ### Supported Hypervisors
 
 `minikube start` defaults to virtualbox, but supports other drivers using the `--vm-driver` argument:
