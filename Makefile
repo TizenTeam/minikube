@@ -137,6 +137,7 @@ endif
 
 
 help:
+	docker version
 	BUILD_IN_DOCKER=y make all
 
 
