@@ -127,6 +127,10 @@ ifeq ($(GOOS),windows)
 endif
 
 
+help:
+	BUILD_IN_DOCKER=y make all
+
+
 out/minikube$(IS_EXE): out/minikube-$(GOOS)-$(GOARCH)$(IS_EXE)
 	cp $< $@
 
