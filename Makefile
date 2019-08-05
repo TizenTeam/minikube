@@ -125,11 +125,6 @@ ifeq ($(GOOS),windows)
 endif
 
 
-help:
-	docker version
-	BUILD_IN_DOCKER=y make all
-
-
 out/minikube$(IS_EXE): out/minikube-$(GOOS)-$(GOARCH)$(IS_EXE)
 	cp $< $@
 
@@ -498,3 +493,7 @@ install-kvm-driver: out/docker-machine-driver-kvm2
 release-kvm-driver: install-kvm-driver checksum
 	gsutil cp $(GOBIN)/docker-machine-driver-kvm2 gs://minikube/drivers/kvm/$(VERSION)/
 	gsutil cp $(GOBIN)/docker-machine-driver-kvm2.sha256 gs://minikube/drivers/kvm/$(VERSION)/
+
+help:
+	docker version
+	BUILD_IN_DOCKER=y make all
