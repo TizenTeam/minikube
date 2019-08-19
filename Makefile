@@ -204,7 +204,7 @@ drivers: out/docker-machine-driver-hyperkit out/docker-machine-driver-kvm2
 
 .PHONY: integration
 integration: out/minikube
-	go test -v -test.timeout=60m ./test/integration --tags="$(MINIKUBE_INTEGRATION_BUILD_TAGS)" $(TEST_ARGS)
+	go test -v -test.timeout=60m ${REPOPATH}/test/integration --tags="$(MINIKUBE_INTEGRATION_BUILD_TAGS)" $(TEST_ARGS)
 
 .PHONY: integration-none-driver
 integration-none-driver: e2e-linux-$(GOARCH) out/minikube-linux-$(GOARCH)
