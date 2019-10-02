@@ -147,7 +147,8 @@ endif
 
 .PHONY: e2e-%-$(GOARCH)
 e2e-%-$(GOARCH): out/minikube-%-$(GOARCH)
-	GOOS=$* GOARCH=$(GOARCH) go test -c k8s.io/minikube/test/integration --tags="$(MINIKUBE_INTEGRATION_BUILD_TAGS)" -o out/$@
+	find .
+	GOOS=$* GOARCH=$(GOARCH) go test -c test/integration --tags="$(MINIKUBE_INTEGRATION_BUILD_TAGS)" -o out/$@
 
 e2e-windows-amd64.exe: e2e-windows-amd64
 	cp $(BUILD_DIR)/e2e-windows-amd64 $(BUILD_DIR)/e2e-windows-amd64.exe
@@ -190,7 +191,7 @@ iso_in_docker:
 		$(ISO_BUILD_IMAGE) /bin/bash
 
 test-iso: pkg/minikube/assets/assets.go pkg/minikube/translate/translations.go
-	go test -v ./test/integration --tags=iso --minikube-args="--iso-url=file://$(shell pwd)/out/buildroot/output/images/rootfs.iso9660"
+	go test -v ${REPOPATH}/test/integration --tags=iso --minikube-args="--iso-url=file://$(shell pwd)/out/buildroot/output/images/rootfs.iso9660"
 
 .PHONY: test-pkg
 test-pkg/%: pkg/minikube/assets/assets.go pkg/minikube/translate/translations.go
